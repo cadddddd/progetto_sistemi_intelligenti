@@ -10,9 +10,9 @@ class Map:
     def __init__(self, num_rows, num_cols):
         """Inizializza."""
         if not isinstance(num_rows, int) or not isinstance(num_cols, int):
-            raise TypeError("\'num_rows\' and \'num_cols\' meglio se un intero")
+            raise TypeError("\'numero di righe\' e \'colonne\' meglio se un intero")
         if num_rows < 5 or num_cols < 5:
-            raise ValueError("\'num_rows\' and \'num_cols\' meglio >= 5")
+            raise ValueError("\'numero di righe\' e \'colonne\' meglio >= 5")
 
         self._num_rows = num_rows
         self._num_cols = num_cols

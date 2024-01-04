@@ -12,8 +12,8 @@ from snake.solver import GreedySolver
 
 @unique
 class GameMode(Enum):
-    NORMAL = 0         # AI with GUI
-    BENCHMARK = 1      # Run benchmarks without GUI
+    NORMAL = 0         
+    BENCHMARK = 1      
    
 
 
@@ -31,9 +31,9 @@ class GameConf:
         # mappa
         self.map_rows = num_rows
         self.map_cols = self.map_rows
-        self.map_width = 800  # pixels
+        self.map_width = 800  
         self.map_height = self.map_width
-        self.info_panel_width = 200  # pixels
+        self.info_panel_width = 200  
         self.window_width = self.map_width + self.info_panel_width
         self.window_height = self.map_height
         self.grid_pad_ratio = 0.125
@@ -105,7 +105,7 @@ class Game:
 
     def _run_benchmarks(self):
         steps_limit = 100000 #numero massimo di passi
-        num_episodes = int(input("insesrisci il numero di episodi: "))
+        num_episodes = int(input("inserisci il numero di episodi: "))
 
         print(f"\nMap size: {self._conf.map_rows}x{self._conf.map_cols}")
         print(f"Solver: {self._conf.solver_name[:-6].lower()}\n")
@@ -141,7 +141,7 @@ class Game:
         self._conf.solver_name = "GreedySolver"
         self._solver = globals()[self._conf.solver_name](self._snake)
     def error_detected(self):
-        print("Error Detected")
+        print("Errore")
         
         self._on_exit()
     def _game_main_normal(self):
@@ -149,7 +149,7 @@ class Game:
             self._map.create_rand_food()
           #------------------------------------------------------------------------------#  
         if not self._map.has_obstrucle():
-            self._map.create_rand_obstrucle(int(self._map.num_rows*2))
+            self._map.create_rand_obstrucle(int(self._map.num_rows*0))
 
         if self._pause or self._is_episode_end():
             return
