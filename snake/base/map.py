@@ -5,14 +5,14 @@ from snake.base.pos import Pos
 
 
 class Map:
-    """2D game map."""
+    """mappa di gioco."""
 
     def __init__(self, num_rows, num_cols):
-        """Initialize a Map object."""
+        """Inizializza."""
         if not isinstance(num_rows, int) or not isinstance(num_cols, int):
-            raise TypeError("\'num_rows\' and \'num_cols\' must be integers")
+            raise TypeError("\'num_rows\' and \'num_cols\' meglio se un intero")
         if num_rows < 5 or num_cols < 5:
-            raise ValueError("\'num_rows\' and \'num_cols\' must >= 5")
+            raise ValueError("\'num_rows\' and \'num_cols\' meglio >= 5")
 
         self._num_rows = num_rows
         self._num_cols = num_cols
@@ -58,18 +58,7 @@ class Map:
         return self._food
 
     def point(self, pos):
-        """Return a point on the map.
-
-        DO NOT directly modify the point type to PointType.FOOD and vice versa.
-        Use {add|rm}_food() methods instead.
-
-        Args:
-            pos (base.pos.Pos): The position of the point to be fetched
-
-        Returns:
-            snake.point.Point: The point at the given position.
-
-        """
+       
         return self._content[pos.x][pos.y]
 
     def is_inside(self, pos):
@@ -84,7 +73,7 @@ class Map:
                                         or self.point(pos).type == PointType.FOOD)
 
     def is_full(self):
-        """Check if the map is filled with the snake's bodies."""
+        """visualizza se la mappa è occupata da tutto il corpo ."""
         for i in range(1, self.num_rows - 1):
             for j in range(1, self.num_cols - 1):
                 t = self._content[i][j].type
@@ -121,7 +110,7 @@ class Map:
                 if t == PointType.EMPTY:
                     empty_pos.append(Pos(i, j))
                 elif t == PointType.FOOD:
-                    return None  # Stop if food exists
+                    return None  # fermo se il cibo esiste
         if empty_pos:
             return self.create_food(random.choice(empty_pos))
         return None
@@ -135,7 +124,7 @@ class Map:
                 if t == PointType.EMPTY:
                     empty_pos.append(Pos(i, j))
                 elif t == PointType.OBSTRUCLE:
-                    return None  # Stop if food exists
+                    return None  # fermo se il cibo esiste
         if empty_pos:
             for _ in range(obsta):
                 obstrucles.append(self.create_obstrucle(random.choice(empty_pos)))

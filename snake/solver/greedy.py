@@ -34,7 +34,7 @@ class GreedySolver(BaseSolver):
         path_to_tail = self._path_solver.longest_path_to_tail()
         if len(path_to_tail) > 1:
             return path_to_tail[0]
-#X CAD
+
         # Step 5
         head = self.snake.head()
         direc, max_dist = self.snake.direc, -1

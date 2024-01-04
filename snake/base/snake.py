@@ -7,18 +7,10 @@ from snake.base.pos import Pos
 
 
 class Snake:
-    """Snake of the game."""
+    
 
     def __init__(self, game_map, init_direc=None, init_bodies=None, init_types=None):
-        """Initialize a Snake object.
-
-        Args:
-            game_map (base.map.Map): The map that the snake moves on.
-            init_direc (base.direc.Direc): Initial direction.
-            init_bodies (list of base.pos.Pos): Initial snake bodies positions.
-            init_types (list of base.point.PointType): Types of each position in init_bodies.
-
-        """
+    
         self._map = game_map
         self._init_direc = init_direc
         self._init_bodies = init_bodies
@@ -27,7 +19,7 @@ class Snake:
 
     def reset(self, reset_map=True):
         rand_init = False
-        if self._init_direc is None:  # Randomly initialize
+        if self._init_direc is None:  # inizializzazione random
             rand_init = True
             head_row = random.randrange(2, self._map.num_rows - 2)
             head_col = random.randrange(2, self._map.num_cols - 2)

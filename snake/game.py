@@ -21,7 +21,7 @@ class GameMode(Enum):
 class GameConf:
 
     def __init__(self,num_rows,solver):
-        """Initialize a default configuration."""
+        
 
         # Game mode
         self.mode = GameMode.NORMAL
@@ -66,16 +66,6 @@ class GameConf:
         self.font_info = ('Arial', 9)
 
         # Info
-        """self.info_str = (
-           "<w/a/s/d>: snake direction\n"
-            "<space>: pause/resume\n"
-            "<r>: restart    <esc>: exit\n"
-            "-----------------------------------\n"
-            "status: %s\n"
-            "episode: %d   step: %d\n"
-            "length: %d/%d (" + str(self.map_rows) + "x" + str(self.map_cols) + ")\n"
-            "-----------------------------------"
-        )"""
         self.info_status = ['eating', 'dead', 'full'] 
 
 

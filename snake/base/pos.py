@@ -2,11 +2,7 @@ from snake.base.direc import Direc
 
 
 class Pos:
-    """Integer coordinate in 2D plane.
-
-    The origin of the coordinate system is at the top-left corner,
-    with x-axis extends downward and y-axis extends rightward.
-    """
+    
     def __init__(self, x=0, y=0):
         self._x = x
         self._y = y
@@ -47,7 +43,7 @@ class Pos:
         return max(abs(p1.x - p2.x),abs(p1.y-p2.y))
 
     def direc_to(self, adj_pos):
-        """Return the direction of an adjacent Pos relative to self."""
+        
         if self._x == adj_pos.x:
             diff = self._y - adj_pos.y
             if diff == 1:
@@ -63,7 +59,7 @@ class Pos:
         return Direc.NONE
 
     def adj(self, direc):
-        """Return the adjacent Pos in a given direction."""
+        
         if direc == Direc.LEFT:
             return Pos(self._x, self._y - 1)
         elif direc == Direc.RIGHT:
@@ -76,7 +72,7 @@ class Pos:
             return None
 
     def all_adj(self):
-        """Return a list of all the adjacent Pos."""
+        
         adjs = []
         for direc in Direc:
             if direc != Direc.NONE:

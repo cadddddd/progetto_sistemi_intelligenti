@@ -39,12 +39,8 @@ if __name__ == "__main__":
     
     main(1,'greedy', 'normal')
     
-    #for i in range(2):
-    #    main(i+1,"greedy")
-    #    main((i+1)*2,"hamilton")
     
     
-    #provare a usare DQNsolver, che dovrebbe usare machine learning per apprendere come giocare
-    #che scoperta diocan 
-    #btw di notte ragiono molto meglio
+    
+   
     
