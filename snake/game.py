@@ -7,15 +7,14 @@ from snake.base import Direc, Map, PointType, Pos, Snake
 from snake.gui import GameWindow
 
 # Add solver names to globals()
-from snake.solver import GreedySolver, HamiltonSolver
+from snake.solver import GreedySolver
 
 
 @unique
 class GameMode(Enum):
     NORMAL = 0         # AI with GUI
     BENCHMARK = 1      # Run benchmarks without GUI
-    TRAIN_DQN = 2      # Train DQNSolver without GUI
-    TRAIN_DQN_GUI = 3  # Train DQNSolver with GUI
+   
 
 
 class GameConf:
@@ -26,10 +25,10 @@ class GameConf:
         # Game mode
         self.mode = GameMode.NORMAL
 
-        # Solver
-        self.solver_name = solver  # Class name of the solver
+        # solver scelto
+        self.solver_name = solver  
 
-        # Size
+        # mappa
         self.map_rows = num_rows
         self.map_cols = self.map_rows
         self.map_width = 800  # pixels
@@ -39,15 +38,15 @@ class GameConf:
         self.window_height = self.map_height
         self.grid_pad_ratio = 0.125
 
-        # Switch
+        
         self.show_grid_line = False
         self.show_info_panel = True
 
-        # Delay
+        # ritardo
         self.interval_draw = 25       # ms
         self.interval_draw_max = 50  # ms
 
-        # Color
+        # Codici colori
         self.color_bg = '#000000'
         self.color_txt = '#F5F5F5'
         self.color_line = '#424242'
@@ -57,7 +56,7 @@ class GameConf:
         self.color_body = '#F5F5F5'
         self.color_obstrucle = '#d00002'
 
-        # Initial snake
+        # snake
         self.init_direc = Direc.RIGHT
         self.init_bodies = [Pos(1, 4), Pos(1, 3), Pos(1, 2), Pos(1, 1)]
         self.init_types = [PointType.HEAD_R] + [PointType.BODY_HOR] * 3
@@ -92,27 +91,21 @@ class Game:
     def run(self):
         if self._conf.mode == GameMode.BENCHMARK:
             self._run_benchmarks()
-        elif self._conf.mode == GameMode.TRAIN_DQN:
-            self._run_dqn_train()
-            self._plot_history()
+      
         else:
             window = GameWindow("Snake", self._conf, self._map, self, self._on_exit, (
                 ('<r>', lambda e: self._reset()),
                 ('<space>', lambda e: self._toggle_pause()),
-                ('<h>', lambda e: self.set_hamilton_solver()),
-                ('<g>', lambda e: self.set_greedy_solver()),
-                ('<q>', lambda e: self.error_detected())
+                
                 
             ))
             if self._conf.mode == GameMode.NORMAL:
                 window.show(self._game_main_normal)
-            elif self._conf.mode == GameMode.TRAIN_DQN_GUI:
-                window.show(self._game_main_dqn_train)
-                self._plot_history()
+           
 
     def _run_benchmarks(self):
-        steps_limit = 100000
-        num_episodes = int(input("Please input the number of episodes: "))
+        steps_limit = 100000 #numero massimo di passi
+        num_episodes = int(input("insesrisci il numero di episodi: "))
 
         print(f"\nMap size: {self._conf.map_rows}x{self._conf.map_cols}")
         print(f"Solver: {self._conf.solver_name[:-6].lower()}\n")
@@ -143,9 +136,7 @@ class Game:
 
         self._on_exit()
 
-    def set_hamilton_solver(self):
-        self._conf.solver_name = "HamiltonSolver"
-        self._solver = globals()[self._conf.solver_name](self._snake)
+   
     def set_greedy_solver(self):
         self._conf.solver_name = "GreedySolver"
         self._solver = globals()[self._conf.solver_name](self._snake)
@@ -171,7 +162,7 @@ class Game:
         self._snake.move()
 
         if self._is_episode_end():
-            self._write_logs()  # Write the last step
+            self._write_logs()  
 
     def _plot_history(self):
         self._solver.plot()
@@ -230,6 +221,8 @@ class Game:
                     self._log_file.write("H ")
                 elif pos == self._snake.tail():
                     self._log_file.write("T ")
+                elif t == PointType.OBSTRUCLE:
+                    self._log_file.write("O ")
                 else:
                     self._log_file.write("B ")
             self._log_file.write("\n")

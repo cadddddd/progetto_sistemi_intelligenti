@@ -6,9 +6,7 @@ from snake.game import Game, GameConf, GameMode
 
 def main(prod,choosen_solver, mode):
     dict_solver = {
-        "greedy": "GreedySolver",
-        "hamilton": "HamiltonSolver",
-        "dqn": "DQNSolver",
+        "greedy": "GreedySolver"    
     }
 
     dict_mode = {
@@ -18,9 +16,9 @@ def main(prod,choosen_solver, mode):
 
     parser = argparse.ArgumentParser(description="Run snake game agent.")
     parser.add_argument("-s", default="greedy", choices=dict_solver.keys(),
-                        help="name of the solver to direct the snake (default: hamilton)")
+                        help="algoritmo")
     parser.add_argument("-m", default=mode, choices=dict_mode.keys(),
-                        help="game mode (default: normal)")
+                        help="modalità di gioco default: normal")
     args = parser.parse_args()
     
     solver = dict_solver[choosen_solver]
@@ -39,5 +37,5 @@ if __name__ == "__main__":
     
     main(1,'greedy', 'normal')
     
-  
+   
     

@@ -15,10 +15,10 @@ class _TableCell:
     __repr__ = __str__
 
     def reset(self):
-        # Shortest path
+        
         self.parent = None
         self.dist = sys.maxsize
-        # Longest path
+        
         self.visit = False
 
 
@@ -50,13 +50,7 @@ class PathSolver(BaseSolver):
         return path
 
     def shortest_path_to(self, des):
-        """Find the shortest path from the snake's head to the destination.
-
-        Args:
-            des (snake.base.pos.Pos): The destination position on the map.
-
-        Returns:
-            A collections.deque of snake.base.direc.Direc indicating the path directions.
+        """trova la distanza minima tra la testa e l'obiettivo
         """
         self._reset_table()
 
@@ -70,7 +64,7 @@ class PathSolver(BaseSolver):
             if cur == des:
                 return self._build_path(head, des)
 
-            # Arrange the order of traverse to make the path as straight as possible
+            
             if cur == head:
                 first_direc = self.snake.direc
             else:
@@ -82,7 +76,7 @@ class PathSolver(BaseSolver):
                     adjs[0], adjs[i] = adjs[i], adjs[0]
                     break
 
-            # Traverse adjacent positions
+            
             for pos in adjs:
                 if self._is_valid(pos):
                     adj_cell = self._table[pos.x][pos.y]
@@ -94,14 +88,7 @@ class PathSolver(BaseSolver):
         return deque()
 
     def longest_path_to(self, des):
-        """Find the longest path from the snake's head to the destination.
-
-        Args:
-            des (snake.base.pos.Pos): The destination position on the map.
-
-        Returns:
-            A collections.deque of snake.base.direc.Direc indicating the path directions.
-        """
+        
         path = self.shortest_path_to(des)
         if not path:
             return deque()
@@ -109,13 +96,13 @@ class PathSolver(BaseSolver):
         self._reset_table()
         cur = head = self.snake.head()
 
-        # Set all positions on the shortest path to 'visited'
+       
         self._table[cur.x][cur.y].visit = True
         for direc in path:
             cur = cur.adj(direc)
             self._table[cur.x][cur.y].visit = True
 
-        # Extend the path between each pair of the positions
+        
         idx, cur = 0, head
         while True:
             cur_direc = path[idx]

@@ -69,17 +69,7 @@ class GameWindow(tk.Tk):
             pag.press('SPACE')
             self.is_going = False
     
-    def change_solver(self):
-        if self.solver == "greedy":
-            pag.press('h')
-            self.solver = "hamilton"
-            self.hamilton_label.place(x=806, y = 500)
-            self.greedy_label.place(x=1000, y=500)
-        elif self.solver == "hamilton":
-            pag.press('g')
-            self.solver = "greedy"
-            self.greedy_label.place(x=817, y=500)
-            self.hamilton_label.place(x=1000, y=500)
+    
     
     
 
@@ -140,10 +130,7 @@ class GameWindow(tk.Tk):
         else:
             status_str = self._conf.info_status[0]
 
-        """self._info_var.set(self._conf.info_str %
-                           (status_str,
-                            self._game.episode, self._snake.steps,
-                            self._snake.len(), self._map.capacity))"""
+        
 
     def _draw_map_contents(self):
         for i in range(self._map.num_rows - 2):

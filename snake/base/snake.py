@@ -147,7 +147,7 @@ class Snake:
 
     def _new_types(self):
         old_head_type, new_head_type = None, None
-        # new_head_type
+     
         if self._direc_next == Direc.LEFT:
             new_head_type = PointType.HEAD_L
         elif self._direc_next == Direc.UP:
@@ -156,7 +156,7 @@ class Snake:
             new_head_type = PointType.HEAD_R
         elif self._direc_next == Direc.DOWN:
             new_head_type = PointType.HEAD_D
-        # old_head_type
+       
         if (self._direc == Direc.LEFT and self._direc_next == Direc.LEFT) or \
            (self._direc == Direc.RIGHT and self._direc_next == Direc.RIGHT):
             old_head_type = PointType.BODY_HOR
